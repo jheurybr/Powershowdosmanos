@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerShow — Controle Remoto Inteligente para Data-Show</title>
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#111832; --card:#161f3d; --accent:#5b8cff;
+    --accent2:#38d39f; --text:#e8ecf8; --muted:#9aa5c4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(160deg,var(--bg),var(--bg2));
+    color:var(--text);line-height:1.7;scroll-behavior:smooth;}
+  nav{position:fixed;top:0;width:100%;background:rgba(11,16,32,.92);backdrop-filter:blur(8px);
+    display:flex;justify-content:center;gap:1.4rem;padding:.9rem 1rem;z-index:100;flex-wrap:wrap;border-bottom:1px solid #22305c;}
+  nav a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;transition:.2s;}
+  nav a:hover{color:var(--accent2);}
+  header{padding:9rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden;}
+  header h1{font-size:clamp(2.2rem,6vw,4rem);background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  header p.sub{font-size:1.15rem;color:var(--muted);max-width:720px;margin:1.2rem auto 0;}
+  .badges{margin-top:1.6rem;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;}
+  .badge{background:var(--card);border:1px solid #2a3a6e;padding:.45rem 1rem;border-radius:99px;font-size:.85rem;color:var(--accent2);}
+  .phone{margin:3rem auto 0;width:210px;height:380px;border:3px solid #2a3a6e;border-radius:32px;
+    background:var(--card);box-shadow:0 0 60px rgba(91,140,255,.35);position:relative;animation:float 4s ease-in-out infinite;}
+  .phone .screen{position:absolute;inset:14px;border-radius:22px;background:linear-gradient(150deg,#1b2650,#0e1530);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;padding:1rem;}
+  .btn-remote{width:64px;height:64px;border-radius:50%;border:2px solid var(--accent);background:rgba(91,140,255,.12);
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;transition:.2s;color:var(--text);}
+  .btn-remote:hover{background:rgba(56,211,159,.25);border-color:var(--accent2);transform:scale(1.1);}
+  .timer-pill{font-size:.85rem;color:var(--accent2);background:rgba(56,211,159,.12);padding:.3rem .9rem;border-radius:99px;}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  section{max-width:1000px;margin:0 auto;padding:4rem 1.5rem;}
+  h2{font-size:1.9rem;margin-bottom:1.2rem;border-left:5px solid var(--accent);padding-left:.8rem;}
+  .card{background:var(--card);border:1px solid #233463;border-radius:16px;padding:1.6rem 1.8rem;margin-top:1.4rem;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);transition:.25s;}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .grid{display:grid;gap:1.4rem;}
+  @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
+  .card h3{color:var(--accent2);margin-bottom:.5rem;font-size:1.1rem;}
+  .card ul{margin-left:1.3rem;color:var(--muted);}
+  .team{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem;}
+  .member{flex:1 1 160px;background:var(--card);border:1px solid #233463;border-radius:14px;padding:1.1rem;text-align:center;}
+  .member .avatar{width:64px;height:64px;border-radius:50%;margin:0 auto .7rem;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:700;font-size:1.3rem;color:#0b1020;}
+  .member strong{font-size:.95rem;}
+  .member span{display:block;color:var(--muted);font-size:.8rem;margin-top:.2rem;}
+  .ref{font-size:.92rem;color:var(--muted);padding:.8rem 0;border-bottom:1px dashed #2a3a6e;}
+  footer{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.9rem;border-top:1px solid #22305c;margin-top:2rem;}
+  .highlight{color:var(--accent2);font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#inicio">Início</a><a href="#intro">Introdução</a><a href="#problema">Problema</a>
+  <a href="#hipoteses">Hipóteses</a><a href="#objetivos">Objetivos</a>
+  <a href="#metodologia">Metodologia</a><a href="#equipe">Equipe</a><a href="#referencias">Referências</a>
+</nav>
+
+<header id="inicio">
+  <h1>PowerShow</h1>
+  <p class="sub">Controle Remoto Inteligente para Data-Show — transformando o smartphone no centro da sua apresentação. Projeto de pesquisa da <strong>XI Semana Científica — Aprendendo Conosco</strong>, do curso Técnico em Informática para Internet, EEEM Emir de Macedo Gomes, Linhares — 2025.</p>
+  <div class="badges">
+    <span class="badge">📱 App Mobile</span><span class="badge">🌐 Internet das Coisas (IoT)</span>
+    <span class="badge">🎤 Mobilidade na Apresentação</span><span class="badge">⏱️ Gestão de Tempo</span>
+  </div>
+  <div class="phone">
+    <div class="screen">
+      <span class="timer-pill" id="timer">⏱ 00:00</span>
+      <button class="btn-remote" onclick="prevSlide()" title="Slide anterior">◀</button>
+      <button class="btn-remote" onclick="nextSlide()" title="Próximo slide" style="border-color:var(--accent2)">▶</button>
+      <div id="slideInfo" style="font-size:.8rem;color:var(--muted)">Slide 1 / 10</div>
+    </div>
+  </div>
+</header>
+
+<section id="intro">
+  <h2>Introdução e Justificativa</h2>
+  <div class="card">
+    <p>O projeto propõe o desenvolvimento do <span class="highlight">PowerShow</span>, um aplicativo de controle remoto inteligente voltado para a gestão de projetores (data-show) por meio de dispositivos móveis. Atualmente, o uso de projetores é indispensável em ambientes acadêmicos e corporativos, mas a dependência de controles físicos — frequentemente perdidos, com falhas de bateria ou compatibilidade limitada — cria obstáculos constantes ao fluxo das apresentações.</p>
+    <p style="margin-top:.8rem">O foco é desenvolver uma interface que integre comandos básicos e funções avançadas, como <span class="highlight">gestão de tempo</span> e <span class="highlight">visualização de notas</span>, situando o tema no contexto da Internet das Coisas (IoT) e do desenvolvimento mobile para transformar o smartphone em uma ferramenta central de produtividade.</p>
+    <p style="margin-top:.8rem">A justificativa fundamenta-se na <span class="highlight">otimização de tempo e recursos</span>: eliminar a necessidade de hardware proprietário e reduzir interrupções técnicas durante palestras e aulas, aumentando a fluidez da comunicação e oferecendo ao apresentador maior autonomia e segurança.</p>
+  </div>
+</section>
+
+<section id="problema">
+  <h2>Problema</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>🔒 Falta de mobilidade</h3><p>Apresentadores ficam "presos" ao computador ou a controles limitados, o que prejudica a dinâmica e o engajamento com o público.</p></div>
+    <div class="card"><h3>📉 Soluções pouco acessíveis</h3><p>Há escassez de soluções acessíveis que integrem dispositivos já utilizados no dia a dia, como os smartphones.</p></div>
+  </div>
+  <div class="card"><h3>Pergunta de pesquisa</h3><p>Como o uso de dispositivos móveis pode melhorar a condução de apresentações, oferecendo mais <span class="highlight">liberdade, organização e eficiência</span>?</p></div>
+</section>
+
+<section id="hipoteses">
+  <h2>Hipóteses</h2>
+  <div class="card">
+    <p>Ao transformar o celular em um controle inteligente, devolvemos a <span class="highlight">liberdade de movimento</span> ao apresentador, tornando a fala mais dinâmica e facilitando a interação com o público.</p>
+    <p style="margin-top:.8rem">Prevemos que recursos como <span class="highlight">temporizadores</span> e <span class="highlight">comandos simplificados</span> trarão mais organização e segurança, elevando o nível de desempenho tanto no ambiente educacional quanto no profissional.</p>
+  </div>
+</section>
+
+<section id="objetivos">
+  <h2>Objetivos</h2>
+  <div class="card">
+    <h3>🎯 Objetivo Geral</h3>
+    <ul>
+      <li>Analisar as limitações de mobilidade e controle enfrentadas por apresentadores no uso de ferramentas tradicionais de apresentação digital;</li>
+      <li>Investigar o potencial dos smartphones como recurso tecnológico para auxiliar na condução de apresentações, promovendo maior liberdade e interação com o público;</li>
+      <li>Propor uma solução acessível e integrada baseada em dispositivos móveis que melhore a eficiência, organização e dinâmica das apresentações.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>✅ Objetivo Específico</h3>
+    <p>Avaliar como o uso do smartphone pode melhorar a mobilidade e o controle durante apresentações digitais.</p>
+  </div>
+</section>
+
+<section id="metodologia">
+  <h2>Metodologia</h2>
+  <p style="color:var(--muted);margin-bottom:.4rem">Abordagem <strong style="color:var(--text)">mista</strong> (qualitativa + quantitativa), desenvolvida em etapas:</p>
+  <div class="grid grid-3">
+    <div class="card"><h3>1️⃣ Pesquisa Teórica</h3><p>Estudo do funcionamento dos controles de data-show e das tecnologias do app, como conexões Wi-Fi e Bluetooth.</p></div>
+    <div class="card"><h3>2️⃣ Coleta de Dados</h3><p>Questionários e entrevistas com estudantes e professores, além de observação do uso do app em situações reais de apresentação.</p></div>
+    <div class="card"><h3>3️⃣ Análise</h3><p>Dados quantitativos organizados em números e porcentagens; qualitativos analisados por padrões e sugestões recorrentes.</p></div>
+  </div>
+  <div class="card"><p>A coleta acontece ao longo do desenvolvimento, permitindo <span class="highlight">ajustes e melhorias contínuas</span> conforme os testes — tornando o processo dinâmico e próximo da realidade dos usuários.</p></div>
+</section>
+
+<section id="equipe">
+  <h2>Equipe</h2>
+  <div class="team">
+    <div class="member"><div class="avatar">GB</div><strong>Gabriel Gonçalves Bôa</strong><span>Pesquisador</span></div>
+    <div class="member"><div class="avatar">GP</div><strong>Gustavo Pissinatti</strong><span>Pesquisador</span></div>
+    <div class="member"><div class="avatar">JR</div><strong>Jheury de Moura Ribeiro</strong><span>Pesquisador</span></div>
+    <div class="member"><div class="avatar">LO</div><strong>Lucas Corona de Oliveira</strong><span>Pesquisador</span></div>
+    <div class="member"><div class="avatar">YU</div><strong>Yuly</strong><span>Pesquisadora</span></div>
+    <div class="member"><div class="avatar">PR</div><strong>Pablo Ravani</strong><span>Orientador</span></div>
+  </div>
+</section>
+
+<section id="referencias">
+  <h2>Referências</h2>
+  <div class="card">
+    <p class="ref">MORAN, José Manuel. <em>A educação que desejamos: novos desafios e como chegar lá</em>. 5. ed. Campinas: Papirus, 2012.</p>
+    <p class="ref">LÉVY, Pierre. <em>Cibercultura</em>. São Paulo: Editora 34, 1999.</p>
+    <p class="ref">SANTAELLA, Lucia. <em>Comunicação ubíqua: repercussões na cultura e na educação</em>. São Paulo: Paulus, 2013.</p>
+    <p class="ref">TAURION, Cezar. <em>Internet das Coisas: IoT – Transformando negócios e a sociedade</em>. Rio de Janeiro: Brasport, 2018.</p>
+    <p class="ref">PRESSMAN, Roger S.; MAXIM, Bruce R. <em>Engenharia de software: uma abordagem profissional</em>. 8. ed. Porto Alegre: AMGH, 2016.</p>
+    <p class="ref">SOMMERVILLE, Ian. <em>Engenharia de software</em>. 10. ed. São Paulo: Pearson, 2019.</p>
+    <p class="ref">KENSKI, Vani Moreira. <em>Tecnologias e ensino presencial e a distância</em>. Campinas: Papirus, 2012.</p>
+    <p class="ref">SILVA, Marco. <em>Sala de aula interativa</em>. 7. ed. São Paulo: Loyola, 2014.</p>
+    <p class="ref">OLIVEIRA, Cláudio de. <em>Aplicativos móveis: desenvolvimento para Android e iOS</em>. São Paulo: Novatec, 2020.</p>
+    <p class="ref">GARTNER. <em>Internet of Things (IoT)</em>. 2023.</p>
+    <p class="ref">MICROSOFT. <em>PowerPoint Remote Control and Mobile Integration</em>. 2024.</p>
+    <p class="ref">GOOGLE DEVELOPERS. <em>Android Developers Documentation</em>. 2025.</p>
+    <p class="ref" style="border-bottom:none">APPLE DEVELOPERS. <em>iOS Developer Documentation</em>. 2025.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>PowerShow</strong> — XI Semana Científica · Aprendendo Conosco</p>
+  <p>EEEM Emir de Macedo Gomes · Técnico em Informática para Internet · Linhares, 2025</p>
+</footer>
+
+<script>
+  let slide = 1; const total = 10;
+  let seg = 0;
+  function update(){ document.getElementById('slideInfo').textContent = `Slide ${slide} / ${total}`; }
+  function nextSlide(){ if(slide < total){ slide++; update(); } }
+  function prevSlide(){ if(slide > 1){ slide--; update(); } }
+  setInterval(()=>{ seg++;
+    const m = String(Math.floor(seg/60)).padStart(2,'0'), s = String(seg%60).padStart(2,'0');
+    document.getElementById('timer').textContent = `⏱ ${m}:${s}`;
+  }, 1000);
+</script>
+</body>
+</html>
